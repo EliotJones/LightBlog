@@ -14,7 +14,7 @@ namespace LightBlog.Controllers
 
         public IActionResult Index(int page = 1)
         {
-            var posts = postRepository.GetPaged(page, 2);
+            var posts = postRepository.GetPaged(page, 3);
 
             return View(posts);
         }

@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using LightBlog.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace LightBlog.Models.Posts
@@ -18,6 +20,8 @@ namespace LightBlog.Models.Posts
         PostFindResult FindPost(int year, int month, string name);
 
         IReadOnlyList<PostViewModel> GetTopPosts(int number);
+
+        Task CreatePost(IFormFile file);
     }
 
     public class PostRepository : IPostRepository
@@ -54,9 +58,7 @@ namespace LightBlog.Models.Posts
 
         public IReadOnlyList<PostInformation> GetAllPostInformation()
         {
-            var root = Directory.GetCurrentDirectory();
-
-            var postDirectory = Path.Combine(root, "Posts");
+            var postDirectory = GetPostDirectory();
 
             var files = Directory.GetFiles(postDirectory);
 
@@ -89,6 +91,25 @@ namespace LightBlog.Models.Posts
             return posts.OrderByDescending(x => x.Date).Take(number)
                 .Select(x => new PostViewModel(x))
                 .ToList();
+        }
+
+        public async Task CreatePost(IFormFile file)
+        {
+            var path = Path.Combine(GetPostDirectory(), file.FileName);
+
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+        }
+
+        private static string GetPostDirectory()
+        {
+            var root = Directory.GetCurrentDirectory();
+
+            var postDirectory = Path.Combine(root, "Posts");
+
+            return postDirectory;
         }
     }
 }
