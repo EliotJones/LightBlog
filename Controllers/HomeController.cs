@@ -12,9 +12,9 @@ namespace LightBlog.Controllers
             this.postRepository = postRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var posts = postRepository.GetPaged(0, 5);
+            var posts = postRepository.GetPaged(page, 2);
 
             return View(posts);
         }

@@ -1,0 +1,18 @@
+@model PostViewModel
+
+<div class="post">
+    <h2>
+        <a asp-route="post"
+        asp-route-year="@Model.Year"
+        asp-route-month="@Model.Month"
+        asp-route-name="@Model.Name">
+        @Model.Title
+        </a>
+    </h2>
+    <div class="date">
+        <span>@Model.Date.ToString("dd/MM/yyyy")</span>
+    </div>
+    <div class="post-body">
+        @Html.Raw(Model.Text)
+    </div>
+</div>

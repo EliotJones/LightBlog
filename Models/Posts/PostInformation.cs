@@ -23,7 +23,7 @@ namespace LightBlog.Models.Posts
                 var datePart = filePath.Substring(filePath.LastIndexOf("_") + 1)
                     .Replace(".txt", string.Empty);
 
-                Name = filePath.Substring(filePath.LastIndexOf(Path.DirectorySeparatorChar));
+                Name = filePath.Substring(filePath.LastIndexOf(Path.DirectorySeparatorChar) + 1);
                 Date = DateTime.ParseExact(datePart, "ddMMyyyy", CultureInfo.InvariantCulture); 
             }
             catch (Exception)

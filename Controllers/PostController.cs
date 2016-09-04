@@ -18,9 +18,21 @@ namespace LightBlog.Controllers
 
         public IActionResult Index(int year, int month, string name)
         {
-            logger.LogInformation("Getting post year {year}, month {month}, name: {name}");
+            logger.LogInformation("Getting post year {year}, month {month}, name: {name}",
+                year,
+                month,
+                name);
 
-            return View();
+            var post = postRepository.FindPost(year, month, name);
+
+            if (!post.IsFound)
+            {
+                logger.LogInformation("Post not found!");
+                
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(post.Post);
         }
     }
 }

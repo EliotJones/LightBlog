@@ -1,0 +1,27 @@
+@model PagedPostsViewModel
+
+@if(Model.TotalPages > 1)
+{
+    <div class="paging">
+        @if(Model.PageNumber > 1)
+        {
+            <a  asp-controller="home" asp-action="index"
+                asp-route-page="@(Model.PageNumber - 1)">Newer</a>
+        }
+
+        @for(var i = 1; i < Model.TotalPages + 1; i++)
+        {
+            var cssClass = i == Model.PageNumber ? "page-link page-link-active" : "page-link";
+
+            <a asp-controller="home" asp-action="index"
+                asp-route-page="@i"
+                class="@cssClass">@i</a>
+        }
+
+        @if(Model.PageNumber < Model.TotalPages)
+        {
+            <a  asp-controller="home" asp-action="index"
+                asp-route-page="@(Model.PageNumber + 1)">Older</a>
+        }
+    </div>
+}

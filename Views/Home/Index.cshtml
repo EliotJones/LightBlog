@@ -1,12 +1,13 @@
-@model IReadOnlyList<PostViewModel>
+@model PagedPostsViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
-@for(var i = 0; i < Model.Count; i++)
+@Html.Partial("_Paging")
+
+@for(var i = 0; i < Model.Posts.Count; i++)
 {
-    <div class="post">
-        <h2>@Model[i].Title</h2>
-        @Html.Raw(Model[i].Text)
-    </div>
+    @Html.Partial("_Post", Model.Posts[i])
 }
+
+@Html.Partial("_Paging")

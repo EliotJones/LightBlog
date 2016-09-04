@@ -21,6 +21,10 @@ namespace LightBlog.ViewModels
 
         public string Url { get; set; }
 
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public string Name { get; set; }
+
         public PostViewModel ()
         {
         }
@@ -39,6 +43,11 @@ namespace LightBlog.ViewModels
             Title = regexMatch.Value.Replace("<h1>", string.Empty)
                 .Replace("</h1>", string.Empty);
             Text = Text.Replace(regexMatch.Value, string.Empty);
+
+            Year = postInformation.Date.Year;
+            Month= postInformation.Date.Month;
+            Name = postInformation.Name.Substring(0, 
+                postInformation.Name.LastIndexOf("_"));
         }
     }
 }

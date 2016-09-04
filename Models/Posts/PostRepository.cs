@@ -11,7 +11,7 @@ namespace LightBlog.Models.Posts
     {
         IReadOnlyList<PostViewModel> GetAll();
 
-        IReadOnlyList<PostViewModel> GetPaged(int page, int pageSize);
+        PagedPostsViewModel GetPaged(int page, int pageSize);
 
         IReadOnlyList<PostInformation> GetAllPostInformation(); 
 
@@ -27,17 +27,20 @@ namespace LightBlog.Models.Posts
             this.logger = logger;
         }
 
-        public IReadOnlyList<PostViewModel> GetPaged(int page, int pageSize)
+        public PagedPostsViewModel GetPaged(int page, int pageSize)
         {
             logger.LogInformation("Getting posts for page {page}", page);
 
             var fileInformation = GetAllPostInformation();
 
-            return fileInformation.OrderByDescending(x => x.Date)
-                .Skip(page * pageSize)
+            var posts = fileInformation.OrderByDescending(x => x.Date)
+                .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(x => new PostViewModel(x))
                 .ToList();
+
+            return new PagedPostsViewModel(posts, page, 
+                (int)Math.Ceiling(fileInformation.Count / (double)pageSize));
         }
 
         public IReadOnlyList<PostViewModel> GetAll()
