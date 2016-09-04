@@ -1,5 +1,11 @@
 body{
     margin: 0;
     padding:0;
-    
+}
+
+footer{
+    min-height: 120px;
+    background: #ecf0f1;
+    border-top: 1px solid #bbb;
+    margin-top: 52px; 
 }

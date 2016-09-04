@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LightBlog.Models;
 using LightBlog.Models.Posts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace LightBlog
 {
@@ -37,6 +39,10 @@ namespace LightBlog
         {
             services.AddMvc();
 
+            services.AddOptions();
+
+            services.Configure<UploadOptions>(Configuration.GetSection("UploadOptions"));
+
             services.AddTransient<IPostRepository, PostRepository>();
         }
 
@@ -49,7 +55,6 @@ namespace LightBlog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else

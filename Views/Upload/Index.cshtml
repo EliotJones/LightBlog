@@ -1,0 +1,22 @@
+@model UploadFileViewModel
+
+<form method="post" asp-action="Index" asp-controller="Upload" enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="twelve columns">
+            <label asp-for="File"></label>
+            <input type="file" asp-for="File"/>
+            <span asp-validation-for="File"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="eight columns">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password"></span>           
+        </div>
+    </div>
+
+    <input type="submit" class="button button-primary" value="Upload" />
+</form>

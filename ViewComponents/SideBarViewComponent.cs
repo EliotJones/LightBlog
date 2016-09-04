@@ -13,11 +13,11 @@ namespace LightBlog.ViewComponents
             this.postRepository = postRepository;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public Task<IViewComponentResult> InvokeAsync()
         {
             var topPosts = postRepository.GetTopPosts(5);
 
-            return View(topPosts);
+            return Task.FromResult((IViewComponentResult)View(topPosts));
         }
     }
 }

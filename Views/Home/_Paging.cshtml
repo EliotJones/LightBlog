@@ -6,12 +6,13 @@
         @if(Model.PageNumber > 1)
         {
             <a  asp-controller="home" asp-action="index"
-                asp-route-page="@(Model.PageNumber - 1)">Newer</a>
+                asp-route-page="@(Model.PageNumber - 1)"
+                class="button">Newer</a>
         }
 
         @for(var i = 1; i < Model.TotalPages + 1; i++)
         {
-            var cssClass = i == Model.PageNumber ? "page-link page-link-active" : "page-link";
+            var cssClass = i == Model.PageNumber ? "button button-primary" : "button";
 
             <a asp-controller="home" asp-action="index"
                 asp-route-page="@i"
@@ -21,7 +22,8 @@
         @if(Model.PageNumber < Model.TotalPages)
         {
             <a  asp-controller="home" asp-action="index"
-                asp-route-page="@(Model.PageNumber + 1)">Older</a>
+                asp-route-page="@(Model.PageNumber + 1)"
+                class="button">Older</a>
         }
     </div>
 }
