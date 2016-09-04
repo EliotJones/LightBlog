@@ -16,6 +16,8 @@ namespace LightBlog.Models.Posts
         IReadOnlyList<PostInformation> GetAllPostInformation(); 
 
         PostFindResult FindPost(int year, int month, string name);
+
+        IReadOnlyList<PostViewModel> GetTopPosts(int number);
     }
 
     public class PostRepository : IPostRepository
@@ -78,6 +80,15 @@ namespace LightBlog.Models.Posts
             var viewModel = new PostViewModel(matchingPost);
 
             return new PostFindResult(viewModel);
+        }
+
+        public IReadOnlyList<PostViewModel> GetTopPosts(int number)
+        {
+            var posts = GetAllPostInformation();
+
+            return posts.OrderByDescending(x => x.Date).Take(number)
+                .Select(x => new PostViewModel(x))
+                .ToList();
         }
     }
 }

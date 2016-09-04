@@ -22,6 +22,11 @@ gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);
 });
 
+gulp.task('watch', function() {
+    gulp.watch(webroot + 'js/**/*.js', ['clean:js', 'min:js']);
+    gulp.watch(webroot + 'css/**/*.css', ['clean:css', 'min:css']);
+});
+
 gulp.task("clean:css", function (cb) {
     rimraf(paths.concatCssDest, cb);
 });
