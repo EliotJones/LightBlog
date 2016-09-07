@@ -1,0 +1,14 @@
+@model UploadLoginViewModel
+
+<form method="post" asp-action="Login" asp-controller="Upload">
+
+    <div class="row">
+        <div class="eight columns">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password"></span>           
+        </div>
+    </div>
+
+    <input type="submit" class="button button-primary" value="Log-in" />
+</form>

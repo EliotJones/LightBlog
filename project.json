@@ -6,7 +6,9 @@
       "version": "1.0.0",
       "type": "platform"
     },
+    "System.Security.Cryptography.Algorithms":"4.2.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Markdown":"2.1.0",

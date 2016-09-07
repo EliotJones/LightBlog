@@ -46,6 +46,10 @@ artifacts/
 
 wwwroot/css/*.min.css
 wwwroot/js/*.min.js
+wwwroot/lib/*
+
+Posts/*
+verify.txt
 
 *_i.c
 *_p.c

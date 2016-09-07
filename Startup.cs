@@ -44,6 +44,7 @@ namespace LightBlog
             services.Configure<UploadOptions>(Configuration.GetSection("UploadOptions"));
 
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IUploadAuthentication, UploadAuthentication>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
