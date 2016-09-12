@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LightBlog.Models;
+using LightBlog.Models.Images;
 using LightBlog.Models.Posts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,7 @@ namespace LightBlog
             services.Configure<UploadOptions>(Configuration.GetSection("UploadOptions"));
 
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
             services.AddTransient<IUploadAuthentication, UploadAuthentication>();
         }
 
