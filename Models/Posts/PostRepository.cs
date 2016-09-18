@@ -107,7 +107,7 @@ namespace LightBlog.Models.Posts
         {
             var root = Directory.GetCurrentDirectory();
 
-            var postDirectory = Path.Combine(root, "Posts");
+            var postDirectory = Path.Combine(root, "wwwroot", "posts");
 
             return postDirectory;
         }
