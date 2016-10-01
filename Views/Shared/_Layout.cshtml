@@ -1,9 +1,11 @@
+@inject IOptions<SiteOptions> site
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LightBlog</title>
+    <title>@ViewData["Title"] - @site.Value.Name</title>
 
     <link rel="stylesheet" href="~/css/site.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
@@ -11,7 +13,7 @@
 <body>
     <nav class="menu">
         <a asp-controller="home"
-            asp-action="index">LightBlog</a>
+            asp-action="index">@site.Value.Name</a>
     </div>
     <div class="container">
         <div class="row">

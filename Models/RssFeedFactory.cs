@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using WilderMinds.RssSyndication;
 
 namespace LightBlog.Models
@@ -14,15 +15,18 @@ namespace LightBlog.Models
         private readonly IPostRepository postRepository;
         private readonly IUrlHelper urlHelper;
         private readonly ILogger<RssFeedFactory> logger;
+        private readonly IOptions<SiteOptions> siteOptions;
 
         public RssFeedFactory(IPostRepository postRepository,
          IUrlHelperFactory urlHelperFactory,
          IActionContextAccessor actionContextAccessor,
-         ILogger<RssFeedFactory> logger)
+         ILogger<RssFeedFactory> logger,
+         IOptions<SiteOptions> siteOptions)
         {
             this.postRepository = postRepository;
             this.urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
             this.logger = logger;
+            this.siteOptions = siteOptions;
         }
 
         public string GetFeed()
@@ -31,8 +35,8 @@ namespace LightBlog.Models
 
             var feed = new Feed
             {
-                Title = "Light Blog ",
-                Description = "Site Description",
+                Title = siteOptions.Value.Name,
+                Description = siteOptions.Value.Description,
                 Link = new Uri(urlHelper.Link("default", new { action = "Index", controller = "Home" }))
             };
 

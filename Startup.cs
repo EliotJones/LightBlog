@@ -43,7 +43,9 @@ namespace LightBlog
 
             services.AddOptions();
 
+            services.Configure<SiteOptions>(Configuration.GetSection("SiteOptions"));
             services.Configure<UploadOptions>(Configuration.GetSection("UploadOptions"));
+            
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IPostRepository, PostRepository>();
