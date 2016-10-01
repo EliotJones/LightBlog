@@ -7,6 +7,7 @@ using LightBlog.Models.Images;
 using LightBlog.Models.Posts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -44,7 +45,9 @@ namespace LightBlog
 
             services.Configure<UploadOptions>(Configuration.GetSection("UploadOptions"));
 
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IRssFeedFactory, RssFeedFactory>();
             services.AddTransient<IImageRepository, ImageRepository>();
             services.AddTransient<IUploadAuthentication, UploadAuthentication>();
         }

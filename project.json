@@ -7,6 +7,7 @@
       "type": "platform"
     },
     "System.Security.Cryptography.Algorithms":"4.2.0",
+    "WilderMinds.RssSyndication": "1.0.4",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Cryptography.KeyDerivation": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
