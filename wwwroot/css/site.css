@@ -3,6 +3,91 @@ body{
     padding:0;
 }
 
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Montserrat', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.menu{
+    height: 70px;
+    background-color: #1ba6e0;
+    border-bottom: 1px solid #1a80aa;
+    color:#ecf0f1;
+    padding-left: 2%;
+    background: url("../images/banner-image.png") right no-repeat #1ba6e0;
+}
+
+.menu > h1{
+    font-size: 2.3em;
+    height: 45px;
+    margin-bottom: 0;
+}
+
+.date{
+    background: url("../images/date.png") left no-repeat;
+    padding-left: 20px;
+    color: #AAA;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.menu > h2{
+    font-size: 1.2em;
+    line-height: 16px;
+    height: 25px;
+}
+
+.menu > h1 > a{
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.side-box{
+    background-color: #1ba6e0;    
+    margin: 20px auto;
+    padding: 5px;
+    color: #ecf0f1;
+}
+
+.side-box > ol > li{
+    font-family: 'Montserrat', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 5px;
+}
+
+.side-box > ol > li > a {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.side-box > h1, .side-box > h2{
+    text-align: center;
+    font-size: 1.6em;
+}
+
+main{
+    margin-top: 20px;
+}
+
+.post{
+    margin-bottom: 35px;
+}
+
+.post > h2{
+    margin-bottom: 5px;
+}
+
+.post > h2 > a{
+    text-decoration: none;
+}
+
+.post-body{
+    padding: 0 20px;
+}
+
+.post-body p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 footer{
     min-height: 120px;
     background: #ecf0f1;

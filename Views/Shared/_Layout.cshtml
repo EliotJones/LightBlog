@@ -1,4 +1,4 @@
-@inject IOptions<SiteOptions> site
+﻿@inject IOptions<SiteOptions> site
 
 <!DOCTYPE html>
 <html>
@@ -9,25 +9,30 @@
 
     <link rel="stylesheet" href="~/css/site.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet" type="text/css">
 </head>
 <body>
     <nav class="menu">
-        <a asp-controller="home"
-            asp-action="index">@site.Value.Name</a>
-    </div>
+        <h1>
+            <a asp-controller="home"
+               asp-action="index">@site.Value.Name</a>
+        </h1>
+        <h2>Thoughts of a developer</h2>
+    </nav>
     <div class="container">
         <div class="row">
             <main class="eight columns">
                 @RenderBody()
             </main>
-            @if(ViewData["include-aside"] == null)
+            @if (ViewData["include-aside"] == null)
             {
                 <aside class="four columns">
-                   @await Component.InvokeAsync("SideBar") 
+                    @await Component.InvokeAsync("SideBar")
                 </aside>
             }
         </div>
     </div>
+
     <footer>
         <div class="row">
             <div class="eight columns"></div>
@@ -37,20 +42,16 @@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.3.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
         </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+
+    <script src="~/js/site.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     @RenderSection("scripts", required: false)
 </body>
