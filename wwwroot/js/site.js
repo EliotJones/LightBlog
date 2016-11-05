@@ -7,4 +7,5 @@ $(window).on("resize", AdjustWindowHeight);
 
 $(function () {
     AdjustWindowHeight();
+    $("img").addClass("u-max-full-width");
 });

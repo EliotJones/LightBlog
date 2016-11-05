@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="folder-input">
         <div class="twelve columns">
             <label asp-for="Folder"></label>
             <input asp-for="Folder"></input>
@@ -40,3 +40,21 @@
 
     <input type="submit" class="button button-primary" value="Upload" />
 </form>
+
+@section scripts{ 
+    <script>
+        $(function () {
+            $("#folder-input").hide();
+
+            $("#Type").change(function () {
+                var value = $(this).val();
+
+                if (value == "Post") {
+                    $("#folder-input").hide();
+                } else {
+                    $("#folder-input").show();
+                }
+            });
+        })
+    </script>
+}
