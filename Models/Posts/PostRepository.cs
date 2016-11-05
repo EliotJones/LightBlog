@@ -95,7 +95,9 @@ namespace LightBlog.Models.Posts
 
         public async Task CreatePost(IFormFile file)
         {
-            var path = Path.Combine(GetPostDirectory(), file.FileName);
+            var fileName = Path.GetFileName(file.FileName);
+
+            var path = Path.Combine(GetPostDirectory(), fileName);
 
             using (var fileStream = new FileStream(path, FileMode.Create))
             {
@@ -108,6 +110,11 @@ namespace LightBlog.Models.Posts
             var root = Directory.GetCurrentDirectory();
 
             var postDirectory = Path.Combine(root, "wwwroot", "posts");
+
+            if (!Directory.Exists(postDirectory))
+            {
+                Directory.CreateDirectory(postDirectory);
+            }
 
             return postDirectory;
         }

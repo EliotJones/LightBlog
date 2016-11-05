@@ -40,7 +40,11 @@ namespace LightBlog.ViewModels
 
             Title = regexMatch.Value.Replace("<h1>", string.Empty)
                 .Replace("</h1>", string.Empty);
-            Text = Text.Replace(regexMatch.Value, string.Empty);
+
+            if (!string.IsNullOrEmpty(regexMatch.Value))
+            {
+                Text = Text.Replace(regexMatch.Value, string.Empty);
+            }            
 
             Year = postInformation.Date.Year;
             Month= postInformation.Date.Month;
