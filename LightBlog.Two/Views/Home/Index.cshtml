@@ -1,0 +1,13 @@
+@model PagedPostsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.Partial("_Paging")
+
+@for(var i = 0; i < Model.Posts.Count; i++)
+{
+    @Html.Partial("_Post", Model.Posts[i])
+}
+
+@Html.Partial("_Paging")
