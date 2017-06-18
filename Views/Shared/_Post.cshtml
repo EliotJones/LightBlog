@@ -1,3 +1,4 @@
+@inject IOptions<SiteOptions> site
 @model PostViewModel
 
 <div class="post">
@@ -13,6 +14,13 @@
         <span>@Model.Date.ToString("dd/MM/yyyy")</span>
     </div>
     <div class="post-body">
-        @Html.Raw(Model.Text)
+        @if (site.Value.SummaryOnly && ViewData["home"] != null)
+        {
+            @Html.Raw(Model.Summary)
+        }
+        else
+        {
+            @Html.Raw(Model.Text)
+        }
     </div>
 </div>

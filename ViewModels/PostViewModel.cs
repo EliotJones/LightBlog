@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using HeyRed.MarkdownSharp;
 using LightBlog.Models.Posts;
+using System.Linq;
 
 namespace LightBlog.ViewModels
 {
@@ -13,7 +14,9 @@ namespace LightBlog.ViewModels
 
         public DateTime Date { get; set; }
 
-        public string Text { get; set; }  
+        public string Text { get; set; }
+
+        public string Summary { get; set; }
 
         public string Markdown { get; set; }
 
@@ -50,6 +53,34 @@ namespace LightBlog.ViewModels
             Month= postInformation.Date.Month;
             Name = postInformation.Name.Substring(0, 
                 postInformation.Name.LastIndexOf("_"));
+
+            Summary = GetSummary(Text);
+        }
+
+        private static string GetSummary(string fullText)
+        {
+            var paragraphs = fullText.Split(new[] { "</p>" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            var firstImageParagraph = paragraphs.FirstOrDefault(x => x.Contains("<img"));
+
+            int index = 0;
+            if (firstImageParagraph != null)
+            {
+                index = paragraphs.IndexOf(firstImageParagraph);
+
+                if (index > 6)
+                {
+                    index = 6;
+                }
+
+                index = Math.Max(index, 3);
+            }
+            else
+            {
+                index = Math.Min(7, paragraphs.Count - 1);
+            }
+
+            return string.Join(string.Empty, paragraphs.Take(index + 1));
         }
     }
 }
