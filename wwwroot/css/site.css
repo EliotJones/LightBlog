@@ -109,3 +109,25 @@ footer{
     border-top: 1px solid #ddd;
     margin-top: 52px; 
 }
+
+.more {
+    width: 100%;
+    background-color: #ecf0f1;
+    height: 32px;
+    margin-top: 25px;
+    border-radius: 3px;
+    color: #bdc3c7;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+    display: block;
+    text-decoration:none;
+    line-height: 21px;
+}
+
+    .more:hover {
+        background-color: #ddd;
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+    }

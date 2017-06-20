@@ -1,20 +1,22 @@
 @inject IOptions<SiteOptions> site
 @model PostViewModel
 
+@{var isSummaryView = site.Value.SummaryOnly && ViewData["home"] != null; }
+
 <div class="post">
     <h2>
         <a asp-route="post"
-        asp-route-year="@Model.Year"
-        asp-route-month="@Model.Month"
-        asp-route-name="@Model.Name">
-        @Model.Title
+           asp-route-year="@Model.Year"
+           asp-route-month="@Model.Month"
+           asp-route-name="@Model.Name">
+            @Model.Title
         </a>
     </h2>
     <div class="date">
         <span>@Model.Date.ToString("dd/MM/yyyy")</span>
     </div>
     <div class="post-body">
-        @if (site.Value.SummaryOnly && ViewData["home"] != null)
+        @if (isSummaryView)
         {
             @Html.Raw(Model.Summary)
         }
@@ -23,4 +25,12 @@
             @Html.Raw(Model.Text)
         }
     </div>
+    @if (isSummaryView)
+    {
+            <a class="more" asp-route="post"
+               asp-route-year="@Model.Year"
+               asp-route-month="@Model.Month"
+               asp-route-name="@Model.Name"
+               title="@Model.Title">...</a>
+    }
 </div>
