@@ -29,6 +29,9 @@
     <Content Include="wwwroot\favicon.ico">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+   <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Markdown" Version="2.2.1" />
@@ -75,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\posts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\**\*" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
 </Project>
