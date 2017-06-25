@@ -7,11 +7,16 @@ using LightBlog.Models;
 using LightBlog.Models.Images;
 using LightBlog.Models.Posts;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.StaticFiles;
+using System;
+using Microsoft.Net.Http.Headers;
 
 namespace LightBlog
 {
     public class Startup
     {
+        private static readonly int cacheSeconds = (int)TimeSpan.FromDays(7).TotalSeconds;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -60,7 +65,10 @@ namespace LightBlog
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = PrepareStaticFileResponse
+            });
 
             app.UseMvc(routes =>
             {
@@ -73,6 +81,11 @@ namespace LightBlog
                     template: "{year:int}/{month:int}/{name}",
                     defaults: new { controller = "Post", action = "Index" });
             });
+        }
+
+        private static void PrepareStaticFileResponse(StaticFileResponseContext context)
+        {
+            context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + cacheSeconds;
         }
     }
 }
