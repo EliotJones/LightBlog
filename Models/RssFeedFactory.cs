@@ -50,8 +50,9 @@ namespace LightBlog.Models
                     Body = x.Text,
                     Link = new Uri(url),
                     Permalink = url,
+
                     PublishDate = x.Date,
-                    Author = new Author { Name = "Eliot Jones" }
+                    Author = new Author { Email = siteOptions.Value.AuthorName, Name = siteOptions.Value.Name }
                 };
             })
             .OrderByDescending(x => x.PublishDate)

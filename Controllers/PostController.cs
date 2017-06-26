@@ -34,5 +34,10 @@ namespace LightBlog.Controllers
 
             return View(post.Post);
         }
+
+        public IActionResult LoadCommentView()
+        {
+            return PartialView("_Disqus");
+        }
     }
 }
